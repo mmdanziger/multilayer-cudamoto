@@ -3,7 +3,7 @@ GPU-accelerated Kuramoto model simulation on multilayer networks. With interacti
 
 This code includes two components:
 * `cudamoto2` - CUDA accelerated simulation for two-layer multilayer networks. Including interdependent and competitive interactions as described in [1].
-* `cudamoto-viewer` - an interactive viewer written in Qt5 to display real-time simulation of `cudamoto2` and the ability to mess with the parameters and see the effects.
+* `cudamoto2-viewer` - an interactive viewer written in Qt5 to display real-time simulation of `cudamoto2` and the ability to mess with the parameters and see the effects.
 
 If you use this code, please cite the paper:
 
