@@ -12,8 +12,8 @@ TARGET = CudamotoViewer
 TEMPLATE = app
 CONFIG += c++11
 
-QMAKE_CC = gcc-6
-QMAKE_CXX = g++-6
+QMAKE_CC = gcc-9
+QMAKE_CXX = g++-9
 
 QMAKE_CXXFLAGS += -std=c++11
 
