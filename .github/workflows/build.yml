@@ -1,8 +1,8 @@
-name: Build cudamoto2-viewer GUI app
+name: Build Code
 run-name: ${{ github.actor }} is bulding the cudamoto multilayer viewer 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Build-Cudamoto2-Viewer:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
