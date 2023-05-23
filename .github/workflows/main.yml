@@ -14,7 +14,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Download build dependencies
-        run: sudo apt update && sudo apt install qt5-default qt5-qmake build-essential
+        run: sudo apt update && sudo apt install qtbase5-dev qt5-qmake build-essential
       - uses: Jimver/cuda-toolkit@v0.2.10
         id: cuda-toolkit
         with:
