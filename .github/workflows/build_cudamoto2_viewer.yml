@@ -11,11 +11,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Download build dependencies
-        run: sudo apt update && sudo apt install qtbase5-dev qt5-qmake build-essential
+        run: sudo apt update && sudo apt install qtbase5-dev qt5-qmake build-essential g++-9
       - uses: Jimver/cuda-toolkit@v0.2.10
         id: cuda-toolkit
         with:
           cuda: '12.1.0'
       - run: nvcc -V      
-      - run: bash build_all.sh
+      - run: bash -e build_all.sh
       - run: echo "🍏 This job's status is ${{ job.status }}."
