@@ -10,16 +10,15 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Download build dependencies
+        run: sudo apt update && sudo apt install qt5-default qt5-qmake build-essential
       - uses: Jimver/cuda-toolkit@v0.2.10
         id: cuda-toolkit
         with:
           cuda: '12.1.0'
-#      - run: echo "Installed cuda version is: ${{ steps.cuda-toolkit.outputs.cuda }}"
-#      - run: echo "Cuda install location: ${{steps.cuda-toolkit.outputs.CUDA_PATH}}"
       - run: nvcc -V      
+      - run: bash build_all.sh
       - run: echo "🍏 This job's status is ${{ job.status }}."
