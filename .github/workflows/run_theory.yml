@@ -1,5 +1,5 @@
 name: Run Theory Code
-run-name: ${{ github.actor }} is bulding the cudamoto multilayer viewer 🚀
+run-name: ${{ github.actor }} is running the theory code.
 on: [push]
 jobs:
   Run-Theory-Code:
@@ -13,5 +13,5 @@ jobs:
       - name: Download build dependencies
         run: python3 -m venv .venv && source .venv/bin/activate && pip install numpy numdifftools scipy matplotlib h5py networkx
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: pushd theory && python3 python get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
+      - run: pushd theory && python3 get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
       - run: cat two_net_result_interdependent_k12_f0.5000_q0.0000.json 
