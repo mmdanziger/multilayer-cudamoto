@@ -1,9 +1,10 @@
-import sync.single_net_sync as sns
 import numpy as np
 from itertools import product as iproduct
 from scipy.optimize import fsolve
 from numdifftools import Jacobian
 from numpy.linalg import det
+
+import sync.single_net_sync as sns
 
 """
 This file contains methods for calculating R_1 and R_2 in two networks
