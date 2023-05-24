@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is running the theory code.
 on:
   push:
     paths:
-      - theory/*
+      - 'theory/*'
 jobs:
   Run-Theory-Code:
     runs-on: ubuntu-latest
