@@ -16,5 +16,5 @@ jobs:
       - name: Download build dependencies
         run: python3 -m venv .venv && source .venv/bin/activate && pip install numpy numdifftools scipy matplotlib h5py networkx
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - run: pushd theory && python3 get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
+      - run: pushd theory && source .venv/bin/activate && python3 get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
       - run: cat two_net_result_interdependent_k12_f0.5000_q0.0000.json 
