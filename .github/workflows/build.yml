@@ -1,11 +1,6 @@
 name: Build Code
 run-name: ${{ github.actor }} is bulding the cudamoto multilayer viewer 🚀
-on:
-  push:
-    paths:
-      - cudamoto2/*
-      - cudamoto2-viewer/*
-      - build_all.sh
+on: [ push ]
 jobs:
   Build-Cudamoto2-Viewer:
     runs-on: ubuntu-latest
