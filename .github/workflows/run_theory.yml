@@ -1,0 +1,19 @@
+name: Run Theory Code
+run-name: ${{ github.actor }} is running the theory code.
+on: [push]
+jobs:
+  Run-Theory-Code:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event. \n🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!\n 🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+        name: Identify self
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Prepare python environment
+        run: python3 -m venv .venv && source .venv/bin/activate && pip install numpy numdifftools scipy matplotlib h5py networkx
+      - run: source .venv/bin/activate && pushd theory && python3 get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
+        name: Run example theory calculation
+      - run: cat theory/two_net_result_interdependent_k12_f0.5000_q0.0000.json 
+        name: Check that expected output was created
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+        name: Complete
