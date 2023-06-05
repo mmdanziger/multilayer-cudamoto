@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cmath>
 #include <hdf5/serial/H5Cpp.h>
 
 using std::cout;
@@ -81,7 +82,7 @@ int main(int argc, char** argv){
 				real maxpower = -2.5;
 				real power_step = (maxpower - minpower) / (steps);
 				for(int i=1; i<=steps; i++){
-					lambda_below = lambda - pow10(minpower+i*power_step);
+					lambda_below = lambda - std::pow(10, minpower + i * power_step);
 					lambda1=lambda_below; lambda2=lambda_below;
 					c2.set_lambda(lambda1,lambda2);
 					c2.set_initial_conditions(makeint2(1,1));
