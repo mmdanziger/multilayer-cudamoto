@@ -1,6 +1,8 @@
 #include "../cudamoto2/src/Cudamoto2.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
+
 using std::cout;
 
 /**
