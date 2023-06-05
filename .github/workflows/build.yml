@@ -1,8 +1,8 @@
 name: Build Code
-run-name: ${{ github.actor }} is bulding the cudamoto multilayer viewer 🚀
+run-name: ${{ github.actor }} is building the cudamoto multilayer viewer 🚀
 on: [ push ]
 jobs:
-  Prepare-Build-Environment:
+  Build-Cudamoto2:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -18,15 +18,6 @@ jobs:
           cuda: '12.1.0'
       - run: nvcc -V      
       - run: bash -e build_lib.sh
-  Build-Cudamoto2-Viewer:
-    runs-on: ubuntu-latest
-    needs: Prepare-Build-Environment
-    steps:
       - run: bash -e build_viewer.sh
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-  Build-Mains:
-    runs-on: ubuntu-latest
-    needs: Prepare-Build-Environment
-    steps:
       - run: bash -e build_mains.sh
       - run: echo "🍏 This job's status is ${{ job.status }}."
