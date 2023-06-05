@@ -1,5 +1,5 @@
 name: Build Code
-run-name: ${{ github.actor }} is building the cudamoto multilayer viewer 🚀
+run-name: ${{ github.actor }} is building the cudamoto multilayer viewer and mains 🚀
 on: [ push ]
 jobs:
   Build-Cudamoto2:
@@ -17,7 +17,5 @@ jobs:
         with:
           cuda: '12.1.0'
       - run: nvcc -V      
-      - run: bash -e build_lib.sh
-      - run: bash -e build_viewer.sh
-      - run: bash -e build_mains.sh
+      - run: make all
       - run: echo "🍏 This job's status is ${{ job.status }}."
