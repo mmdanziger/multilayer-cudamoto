@@ -40,6 +40,7 @@ def combined_R1R2(intfunc, lam, frac, interaction_type="interdependent",q=0):
              (1 - frac) * intfunc(lam[0] * R1R2[0])) -  R1R2[0],
             (frac * 0.5 * (intfunc(lam[1] * R1R2[1] * R1R2[0]) + intfunc(lam[1] * R1R2[1] * (1 - R1R2[0]))) +
             (1 - frac) * intfunc(lam[1] * R1R2[1])) - R1R2[1]])
+    raise ValueError("Unknown interaction type received: " + str(interaction_type))
 
 
 def combined_R1R2_different_systems(intfunc1,intfunc2,lambeta,frac,interaction_type="interdependent",q=0):
