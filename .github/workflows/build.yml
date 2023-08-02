@@ -1,13 +1,8 @@
 name: Build Code
-run-name: ${{ github.actor }} is bulding the cudamoto multilayer viewer 🚀
-on:
-  push:
-    paths:
-      - cudamoto2/*
-      - cudamoto2-viewer/*
-      - build_all.sh
+run-name: ${{ github.actor }} is building the cudamoto multilayer viewer and mains 🚀
+on: [ push ]
 jobs:
-  Build-Cudamoto2-Viewer:
+  Build-Cudamoto2:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -16,11 +11,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Download build dependencies
-        run: sudo apt update && sudo apt install qtbase5-dev qt5-qmake build-essential g++-9
+        run: sudo apt update && sudo apt install qtbase5-dev qt5-qmake build-essential g++-9 libhdf5-dev
       - uses: Jimver/cuda-toolkit@v0.2.10
         id: cuda-toolkit
         with:
           cuda: '12.1.0'
       - run: nvcc -V      
-      - run: bash -e build_all.sh
+      - run: make all
       - run: echo "🍏 This job's status is ${{ job.status }}."
