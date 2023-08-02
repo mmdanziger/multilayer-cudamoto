@@ -5,12 +5,7 @@ from matplotlib import pyplot as plt
 from matplotlib import cm
 from sys import argv
 from os.path import basename,join
-try:
-    from pyNoN import logbin
-except ImportError:
-    from sys import path
-    path.append("/home/micha/phd")
-    from pyNoN import logbin
+from theory import logbin
 import h5py
 
 def fname2metadata(fname):

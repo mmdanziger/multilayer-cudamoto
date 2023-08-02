@@ -10,14 +10,9 @@ from os import environ
 from numdifftools import Jacobian
 from numpy.linalg import det
 import h5py
-try:
-    import sisplex
-except ImportError:
-    from oscillators import sisplex
+import theory.sisplex as sisplex
 from itertools import product as iproduct
 
-from importlib import reload
-reload(sisplex)
 
 
 def fp_type(d,t):

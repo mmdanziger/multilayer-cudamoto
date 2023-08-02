@@ -6,12 +6,8 @@ from matplotlib import cm,colors as mplcolors
 from matplotlib.collections import LineCollection
 from sys import argv,exit
 from os.path import basename,join
-try:
-    import sisplex,intersis,two_nets_sync as tns
-except ImportError:
-    from oscillators import sisplex,intersis,two_nets_sync as tns
-
-from resistornets import theory
+import theory.sisplex as sisplex
+import theory.two_nets_sync as tns
 
 
 def get_lambdac(intfunc,lambdamin=0,lambdamax=1,precision=1e-10,function = tns.solve_R1R2_double_solutions):
@@ -48,8 +44,6 @@ for dlambda in dlambdavec:
     Thetavec2.append(sisplex.solve_R1R2_double_solutions(rrsisintfunc, thisbeta, 1, interaction_type="interdependent")[-1][0][0])
 
 pc = 0
-#p_vec pc + dlambdavec
-#theory.get_interdep_pinf(p_vec, theory.P_inf_factory(kbar))
 
 
 Rvec = np.array(Rvec)

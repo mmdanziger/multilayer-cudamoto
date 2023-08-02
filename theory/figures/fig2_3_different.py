@@ -10,15 +10,12 @@ from os import environ
 from numdifftools import Jacobian
 from numpy.linalg import det
 import h5py
-try:
-    import sisplex
-    import two_nets_sync as tns
-except ImportError:
-    from oscillators import sisplex,two_nets_sync as tns
+import theory.sync.two_nets_sync as tns
+import theory.sync.single_net_sync as sns
+
+
 from itertools import product as iproduct
 import os
-from importlib import reload
-reload(sisplex)
 
 
 def fp_type(d,t):
@@ -127,8 +124,8 @@ except:
     integral1_fname = "/storage" + integral1_fname
     integral2_fname = "/storage" + integral2_fname
 
-intfunc1 = tns.sns.get_interpolated_integral(kbar=kbar, mode="r",fname=integral1_fname,gamma=kbar)
-intfunc2 = tns.sns.get_interpolated_integral(kbar=kbar, mode="r", fname=integral2_fname, gamma=kbar)
+intfunc1 = sns.get_interpolated_integral(kbar=kbar, mode="r",fname=integral1_fname,gamma=kbar)
+intfunc2 = sns.get_interpolated_integral(kbar=kbar, mode="r", fname=integral2_fname, gamma=kbar)
 lam = (lam1,lam2)
 
 interaction_type=["interdependent","competitive","hybrid", "mixed"][interaction_id]

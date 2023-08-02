@@ -10,10 +10,7 @@ from os import environ
 from numdifftools import Jacobian
 from numpy.linalg import det
 import h5py
-try:
-    import two_nets_sync as tns
-except ImportError:
-    from oscillators import two_nets_sync as tns
+import theory.two_nets_sync as tns
 from itertools import product as iproduct
 
 

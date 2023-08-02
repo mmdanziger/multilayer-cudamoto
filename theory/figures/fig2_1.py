@@ -306,7 +306,7 @@ if not True:
                                            [1, 2, 3, 3]):
         nsolspc = plt.contourf(np.array(lamvec).astype(float), np.array(lamvec2).astype(float),
                                this_color * np.ma.masked_invalid(arr.T),
-                               zorder=i, cmap=cmap, edgecolors="None", alpha=0.6, norm=norm)
+                               zorder=i, cmap=cmap, alpha=0.6, norm=norm)
         i += 1
 else:
     fig2 = plt.figure(figsize=(figwidth,figheight))
@@ -321,7 +321,7 @@ else:
                                            ["o", "-", "|", "|", "|", "/"], [1, 2, 3, 4, 5, 6]):
         nsolspc = plt.contourf(np.array(lamvec).astype(float), np.array(lamvec2).astype(float),
                                this_color * np.ma.masked_invalid(arr.T),
-                               zorder=i, cmap=cmap, edgecolors="None", alpha=0.6, norm=norm)
+                               zorder=i, cmap=cmap, alpha=0.6, norm=norm)
         plt.xlabel(param1_string)
         plt.ylabel(param2_string)
         fig2.set_size_inches(figwidth,figheight)
@@ -360,7 +360,7 @@ for arr, this_hatch, this_color in zip([wherezero, where1only, where2only, where
                                        ["o", "-", "|", "|", "|", "/"], [1, 2, 3, 4, 5, 6]):
     nsolspc = plt.contourf(np.array(lamvec).astype(float), np.array(lamvec2).astype(float),
                            this_color * np.ma.masked_invalid(arr.T),
-                           zorder=i, cmap=cmap, edgecolors="None", alpha=0.6, norm=norm)
+                           zorder=i, cmap=cmap, alpha=0.6, norm=norm)
 
     plt.xlabel(param1_string)
     plt.ylabel(param2_string)
@@ -384,7 +384,7 @@ ax3 = fig3.add_subplot(1, 1, 1)
 i = 0
 nsolspc = plt.contourf(np.array(lamvec).astype(float), np.array(lamvec2).astype(float),
                        np.ma.masked_invalid(nstablesols.T),
-                       cmap=cmap, edgecolors="None", alpha=0.6, norm=norm)
+                       cmap=cmap, alpha=0.6, norm=norm)
 fig3.colorbar(nsolspc, ticks=np.arange(np.min(nstablesols), np.max(nstablesols) + 1))
 
 plt.xlabel(param1_string)
@@ -410,7 +410,7 @@ ax4 = fig4.add_subplot(1, 1, 1)
 i = 0
 nsolspc = plt.contourf(np.array(lamvec).astype(float), np.array(lamvec2).astype(float),
                        np.ma.masked_invalid(nsols.T),
-                       cmap=cmap, edgecolors="None", alpha=0.6, norm=norm)
+                       cmap=cmap, alpha=0.6, norm=norm)
 fig4.colorbar(nsolspc, ticks=np.arange(np.min(nsols), np.max(nsols) + 1))
 
 plt.xlabel(param1_string)
