@@ -5,10 +5,5 @@ nvcc -std=c++11 -O3  -DCOS_FACTOR  -dlink  -Xcompiler="-fPIC" -o libCudamoto2.o 
 ar rc libCudamoto2.so libCudamoto2.o Cudamoto2.o
 ranlib libCudamoto2.so
 cp libCudamoto2.so ../../cudamoto2-viewer/src
+cp libCudamoto2.so ../../mains/
 popd
-
-mkdir -p ./cudamoto2-viewer/build && pushd ./cudamoto2-viewer/build
-/usr/bin/qmake ../src
-make
-popd
- 
