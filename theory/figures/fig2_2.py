@@ -1,18 +1,17 @@
-from __future__ import division,print_function
-import json
+from os.path import basename
+from sys import argv
+
+import h5py
 import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib import cm
-from sys import argv
-from os.path import basename,join
 from theory import logbin
-import h5py
+
 
 def fname2metadata(fname):
     d = {}
     for s in basename(fname).rstrip(".hdf5").split("_")[1:]:
         i=0
-        key=''
+        key=""
         while not s[i].isnumeric():
             key+=s[i]
             i+=1
@@ -24,7 +23,7 @@ lambda1 = 0.135
 lambda2 = 0.2175
 frac = 0.5
 with h5py.File(fname) as f:
-    ds = list(f.values())[0]
+    ds = next(iter(f.values()))
     r1,r2 = zip(*ds)
 r1 = np.array(r1)
 r2 = np.array(r2)

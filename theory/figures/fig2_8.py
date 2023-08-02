@@ -1,15 +1,10 @@
-from __future__ import division,print_function
 import json
+from os.path import basename
+from sys import argv
+
+import h5py
 import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
-from matplotlib.collections import LineCollection
-from sys import argv,exit
-from os.path import basename,join
-from os import environ
-import h5py
-
-from itertools import product as iproduct
 
 sis=False
 
@@ -19,8 +14,8 @@ def runname2metadata(runname):
     d = {}
     for s in basename(runname).strip(".hdf5").split("_")[1:]:
         i=0
-        key=''
-        val=''
+        key=""
+        val=""
 
         while  i < len(s) and not s[i].isnumeric():
             key+=s[i]
@@ -52,7 +47,8 @@ def get_lifetime(fname):
         betalist,runlist = json.load(open(fname))
         lifetime = np.array(sorted([(float(beta),0.01*len(run)) for beta,run in zip(betalist,runlist) if run[-1] < 0.005]))
     else:
-        raise ValueError("Unknown filetype: '%s' supported filetypes: 'hd5' (sync) 'json' (sis)")
+        msg = "Unknown filetype: '%s' supported filetypes: 'hd5' (sync) 'json' (sis)"
+        raise ValueError(msg)
     betac_lowerbound = lifetime.max(axis=0)[0]
     betac_upperbound = min(filter(lambda x: float(x)>betac_lowerbound,betalist))
     betac = betac_upperbound#0.5*(betac_upperbound + betac_lowerbound)
@@ -75,13 +71,13 @@ if __name__ == "__main__":
 
     plt.figure()
 
-    paramstring = "\\beta" if sis else "\lambda"
+    paramstring = "\\beta" if sis else r"\lambda"
     orderparamstring = "\\Theta" if sis else "R"
     for beta in beta_to_plot:
         if sis:
             for beta_,run in zip(betalist,runlist):
                 if "%.6f"%beta_ == "%.6f"%beta:
-                    plt.plot([dt * i for i in range(len(run))], run, lw=2, label="$%s = %.6f$"%(paramstring, float(beta)))
+                    plt.plot([dt * i for i in range(len(run))], run, lw=2, label="${} = {:.6f}$".format(paramstring, float(beta)))
         else:
             f = h5py.File(argv[1])
             for run in f:
@@ -89,15 +85,15 @@ if __name__ == "__main__":
 
                     r1, r2 = zip(*f.get(run))
                     runlist.append(r1)
-                    plt.plot([dt*i for i in range(len(r1)) ],r1,lw=2,label="$%s = %.6f$"%(paramstring,float(beta)))
+                    plt.plot([dt*i for i in range(len(r1)) ],r1,lw=2,label="${} = {:.6f}$".format(paramstring,float(beta)))
     plt.legend(loc="best")
     plt.xlabel("$t$")
     plt.ylabel("$"+orderparamstring+"$")
     plt.figure()
     betac = float(betac)
-    plt.loglog(betac - lifetime[:,0], lifetime[:,1]/max(lifetime[:,1]),'.-')
-    plt.xlabel("$%s_c - %s$"%(paramstring,paramstring))
+    plt.loglog(betac - lifetime[:,0], lifetime[:,1]/max(lifetime[:,1]),".-")
+    plt.xlabel(f"${paramstring}_c - {paramstring}$")
     plt.ylabel("$T/T_{\\rm max}$")
-    plt.loglog(betac - lifetime[:,0], (betac - lifetime[:,0])**(-0.5 ) / max((betac - lifetime[:,0])**(-0.5 )),'--')
+    plt.loglog(betac - lifetime[:,0], (betac - lifetime[:,0])**(-0.5 ) / max((betac - lifetime[:,0])**(-0.5 )),"--")
 
 

@@ -1,10 +1,10 @@
-from __future__ import division,print_function
-import json
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
 from sys import argv
+
 import h5py
+import numpy as np
+from matplotlib import cm
+from matplotlib import pyplot as plt
+
 f = h5py.File(argv[1])
 guide_dot_count=15
 make_subplots=False
@@ -24,7 +24,7 @@ if l1[halfway] < l1[0]:
 r1,r2 = np.array(r1),np.array(r2)
 
 this_cm = cm.gist_rainbow
-marker_sequence = ['o', '^', 's', 'D']
+marker_sequence = ["o", "^", "s", "D"]
 
 if make_subplots:
     plt.figure(figsize=(12,6))

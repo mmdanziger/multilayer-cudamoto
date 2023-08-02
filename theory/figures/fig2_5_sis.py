@@ -1,10 +1,9 @@
-from __future__ import division,print_function
-import json
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
 from sys import argv
-import h5py
+
+import numpy as np
+from matplotlib import cm
+from matplotlib import pyplot as plt
+
 bv,hv = np.load(argv[1])
 guide_dot_count=15
 make_subplots=False
@@ -34,7 +33,7 @@ if l1[halfway] < l1[0]:
 r1,r2 = np.array(r1),np.array(r2)
 
 this_cm = cm.gist_rainbow
-marker_sequence = ['o', '^', 's', 'D']
+marker_sequence = ["o", "^", "s", "D"]
 
 if make_subplots:
     plt.figure(figsize=(12,6))
@@ -48,7 +47,6 @@ for idx in range(0,halfway+1,halfway//guide_dot_count):
     marker_count+=1
 plt.xlabel(r"$\beta_1$")
 plt.ylabel(r"$\beta_2$")
-#plt.grid(1)
 plt.axis("equal")
 plt.tight_layout()
 plt.axis([0.007,0.5,0.007,0.5])
@@ -67,9 +65,9 @@ if "LS" in argv[1]:
 else:
     label_tag="LF"
     thismarker="^"
-plt.plot(r1[:halfway],"-",color=color1,label="$\Theta_1$ "+label_tag,lw=2,marker=thismarker)
+plt.plot(r1[:halfway],"-",color=color1,label=r"$\Theta_1$ "+label_tag,lw=2,marker=thismarker)
 plt.plot(list(reversed(r1[halfway:])),"--",color=color1,lw=2,marker=thismarker)
-plt.plot(r2[:halfway],"-",color=color2,label="$\Theta_2 $"+label_tag,lw=2,marker=thismarker)
+plt.plot(r2[:halfway],"-",color=color2,label=r"$\Theta_2 $"+label_tag,lw=2,marker=thismarker)
 plt.plot(list(reversed(r2[halfway:])),"--",color=color2,lw=2,marker=thismarker)
 marker_count=0
 for idx in range(0,halfway+1,halfway//guide_dot_count):
@@ -78,8 +76,7 @@ for idx in range(0,halfway+1,halfway//guide_dot_count):
 plt.axis([0,halfway,0,1.01*max((max(r1),max(r2)))])
 plt.ylim(ymin=0)
 plt.xticks([])
-#plt.xlabel("$s$")
-plt.ylabel("$\Theta$")
+plt.ylabel(r"$\Theta$")
 plt.legend(loc="best")
 plt.tight_layout()
 plt.subplots_adjust(bottom=bottomspace,top=topspace)

@@ -1,13 +1,7 @@
-from __future__ import division,print_function
-import json
 import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
-from matplotlib.collections import LineCollection
-from sys import argv,exit
-from os.path import basename,join
-import theory.sisplex as sisplex
 import theory.two_nets_sync as tns
+from matplotlib import pyplot as plt
+from theory import sisplex
 
 
 def get_lambdac(intfunc,lambdamin=0,lambdamax=1,precision=1e-10,function = tns.solve_R1R2_double_solutions):
@@ -53,9 +47,9 @@ Thetavec2 = np.array(Thetavec2)
 betac = get_lambdac(intfunc=sisintfunc,function=sisplex.solve_R1R2_double_solutions)
 
 plt.figure()
-plt.loglog(dlambdavec,Rvec,'.-')
-plt.loglog(dlambdavec,Thetavec,'.-')
-plt.loglog(dlambdavec,Thetavec2,'.-')
-plt.loglog(dlambdavec,np.sqrt(dlambdavec),'.-')
+plt.loglog(dlambdavec,Rvec,".-")
+plt.loglog(dlambdavec,Thetavec,".-")
+plt.loglog(dlambdavec,Thetavec2,".-")
+plt.loglog(dlambdavec,np.sqrt(dlambdavec),".-")
 plt.show()
 

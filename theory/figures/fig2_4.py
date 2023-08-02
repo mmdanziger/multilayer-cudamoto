@@ -1,16 +1,16 @@
-from __future__ import division,print_function
 import json
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
 from sys import argv
 
+import numpy as np
+from matplotlib import cm
+from matplotlib import colors as mplcolors
+from matplotlib import pyplot as plt
 
 fname = "/storage/home/micha/cudamoto_results/2/theory/two_net_result_competitive_k12_f0.5000.json" if len(argv) <2 else argv[1]
 
 d = json.load(open(fname))
 lamvec = sorted(d.keys(), key=float)
-lamvec2 = sorted(d[list(d.keys())[0]].keys(), key=float)
+lamvec2 = sorted(d[next(iter(d.keys()))].keys(), key=float)
 nsols = np.zeros((len(lamvec), len(lamvec2)))
 nstablesols = np.zeros((len(lamvec), len(lamvec2)))
 

@@ -1,15 +1,15 @@
-from __future__ import division,print_function
-import json
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib import cm,colors as mplcolors
-from sys import argv
-import h5py
 from os.path import basename
+from sys import argv
+
+import h5py
+import numpy as np
+from matplotlib import cm
+from matplotlib import pyplot as plt
+
 data = {}
 
 
-pretty = {"only" : "$|cos|$ ","rcos" : "$r_i |cos|$", "r_i" : "$r_i$", "sqrtrcos" : "$\sqrt{r_i cos}$"}
+pretty = {"only" : "$|cos|$ ","rcos" : "$r_i |cos|$", "r_i" : "$r_i$", "sqrtrcos" : r"$\sqrt{r_i cos}$"}
 labelled_yet={}
 
 orig_color_list = [ "#e6194b", "#3cb44b", "#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#d2f53c", "#fabebe", "#008080", "#e6beff", "#aa6e28", "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080"]
@@ -31,7 +31,7 @@ def getcoslabel(fname):
 start_figures_from=4
 show_global = False
 for fname in sorted(argv[1:]):
-    if not "hdf5" in fname:
+    if "hdf5" not in fname:
         continue
     f = h5py.File(fname)
     guide_dot_count=15
@@ -43,7 +43,7 @@ for fname in sorted(argv[1:]):
     thisdata = {"lambda" : [l1,l2], "r_g" : [r1_g,r2_g], "r_k" : [r1_k,r2_k]}
     thiskey = getcoslabel(fname)
     data[thiskey] = thisdata
-    if not thiskey in labelled_yet:
+    if thiskey not in labelled_yet:
         labelled_yet[thiskey] = False
 
     def reverse_direction(x):
@@ -64,7 +64,7 @@ for fname in sorted(argv[1:]):
 
 
     this_cm = cm.gist_rainbow
-    marker_sequence = ['o', '^', 's', 'D']
+    marker_sequence = ["o", "^", "s", "D"]
 
     if make_subplots:
         plt.figure(figsize=(12,6))
@@ -86,7 +86,7 @@ for fname in sorted(argv[1:]):
     else:
         plt.figure(start_figures_from)
     coslabel = " " + pretty[getcoslabel(fname)]
-    thismarker = '^' if iscos else 'o'
+    thismarker = "^" if iscos else "o"
     if len(color_list) < 2:
         color_list = orig_color_list[:]
 
@@ -102,7 +102,6 @@ for fname in sorted(argv[1:]):
         plt.figure(start_figures_from)
         plt.plot(r1_k[:halfway], ".-", color=color1, label="$R_1$"+coslabel, lw=2,alpha=0.8,marker=thismarker,ms=10)
         plt.plot(list(reversed(r1_k[halfway:])), ".--", color=color1, lw=2,alpha=0.8,marker=thismarker,ms=10)
-        #plt.figure(start_figures_from+1)
         plt.plot(r2_k[:halfway], ".-", color=color2, label="$R_2$"+coslabel, lw=2,alpha=0.8,marker=thismarker,ms=10)
         plt.plot(list(reversed(r2_k[halfway:])), ".--", color=color2, lw=2,alpha=0.8,marker=thismarker,ms=10)
         if show_global:
