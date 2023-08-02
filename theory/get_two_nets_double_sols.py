@@ -7,6 +7,8 @@ import os
 from os.path import basename
 
 """
+ Example: get_two_nets_double_sols.py master 12 0.5 0 0.001 1 0.3
+
 Script to generate solutions for a given value of f.
 It can run as either the master or the slave.
 The master has no args, and launches slaves with args indicating which values to cover.

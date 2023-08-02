@@ -15,5 +15,7 @@ jobs:
         name: Run example theory calculation
       - run: cat theory/two_net_result_interdependent_k12_f0.5000_q0.0000.json 
         name: Check that expected output was created
+      - run: source .venv/bin/activate && pushd theory && python3 figures/fig2_1.py two_net_result_interdependent_k12_f0.5000_q0.0000.json 
+        name: Plot phase space
       - run: echo "🍏 This job's status is ${{ job.status }}."
         name: Complete
